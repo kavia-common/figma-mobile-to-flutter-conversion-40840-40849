@@ -2,15 +2,22 @@
 
 A new Flutter project.
 
-## Getting Started
+## HTML/Assets WebView Integration
 
-This project is a starting point for a Flutter application.
+This app renders Figma-exported HTML/CSS/JS stored at the repo root `/assets/` using `webview_flutter`.
 
-A few resources to get you started if this is your first Flutter project:
+What’s configured:
+- pubspec.yaml includes `assets/` and `assets/figmaimages/`
+- AndroidManifest adds INTERNET permission
+- `lib/main.dart` includes a route index and a WebView screen that:
+  - loads the requested HTML from assets
+  - injects `<base href="/assets/">` so all relative paths like `figmaimages/...` work
+  - enables JavaScript
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+How to run:
+- flutter pub get
+- flutter run
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Notes:
+- See README_WEBVIEW.md for iOS-specific notes if you need App Transport Security exceptions.
+- All routes are visible on the home “Generated Screens” index; tap any to open its HTML in-app.
