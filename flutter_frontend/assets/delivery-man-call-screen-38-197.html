@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Delivery Man Call Screen (38:197)</title>
+  <link rel="stylesheet" href="delivery-man-call-screen-38-197.css" />
+</head>
+<body>
+  <div class="app-canvas">
+    <!-- Top dark background block to match screenshot -->
+    <div class="top-slate"></div>
+
+    <!-- Bottom card -->
+    <section class="call-card" role="region" aria-label="Call controls">
+      <!-- Avatar -->
+      <div class="avatar">
+        <!-- Using a masked image per YAML path. If image missing, fallback bg shows. -->
+        <img class="avatar-img" src="/assets/figmaimages/figma_image_38_208.png" alt="User avatar" />
+      </div>
+
+      <!-- Name -->
+      <h1 class="name">Robert Fox</h1>
+      <!-- Status -->
+      <p class="status">Connecting.......</p>
+
+      <!-- Controls Row -->
+      <div class="controls">
+        <!-- Mute -->
+        <button class="control control-left" id="btn-mute" aria-pressed="false" aria-label="Mute microphone">
+          <img class="control-bg" src="/assets/figmaimages/figma_image_38_217.svg" alt="" />
+          <span class="control-icon control-icon-mic">
+            <img src="/assets/figmaimages/figma_image_38_226.svg" alt="" />
+            <img class="mic-extra" src="/assets/figmaimages/figma_image_38_228.svg" alt="" />
+          </span>
+        </button>
+
+        <!-- End Call (center prominent) -->
+        <button class="end-call" id="btn-end" aria-label="End call">
+          <!-- Outer glow/ring -->
+          <img class="end-ring" src="/assets/figmaimages/figma_image_38_212.svg" alt="" />
+          <!-- Phone icon -->
+          <span class="end-phone">
+            <img src="/assets/figmaimages/figma_image_38_215.svg" alt="" />
+          </span>
+        </button>
+
+        <!-- Speaker -->
+        <button class="control control-right" id="btn-speaker" aria-pressed="false" aria-label="Speaker">
+          <img class="control-bg" src="/assets/figmaimages/figma_image_38_217.svg" alt="" />
+          <span class="control-icon control-icon-volume">
+            <img class="vol-main" src="/assets/figmaimages/figma_image_38_220.svg" alt="" />
+            <!-- small secondary vector implied; represented via CSS tick -->
+            <span class="vol-secondary"></span>
+          </span>
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <script src="delivery-man-call-screen-38-197.js"></script>
+</body>
+</html>

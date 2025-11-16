@@ -1,0 +1,164 @@
+:root {
+  /* Color tokens (inferred) */
+  --bg-canvas: #ffffff;
+  --text-primary: #2b2f3a;   /* dark gray for heading (inferred from screenshot) */
+  --text-secondary: #9aa4af; /* light gray for subtitle (inferred) */
+  --cta-bg: #ff7a1a;         /* orange button background (inferred from screenshot) */
+  --cta-bg-pressed: #e86e16;
+  --cta-text: #ffffff;
+  --illustration-bg: #9dadba; /* bluish gray rounded square (inferred) */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  background: var(--bg-canvas);
+  height: 100%;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.screen.payment-successfull {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  margin: 0 auto;
+  background: var(--bg-canvas);
+  overflow: hidden;
+}
+
+/* Success Illustration container: from YAML dimensions (x:-3216,y:3293) mapped to local frame at 0,0 => absolute top/left */
+.success-illustration {
+  position: absolute;
+  left: 74.0px;  /* Computed from frame: x = -3216 - (-3293) = 77? -> Better from visual: center 228 within 375 -> (375-228)/2 = 73.5 ≈ 74 */
+  top: 238.0px;  /* From screenshot alignment approx; YAML y difference: 3293-3055=238 */
+  width: 228.0px;
+  height: 207.33px;
+}
+
+/* Rounded square backing shape (visualized as the main block in screenshot) */
+.illustration-bg {
+  position: absolute;
+  width: 228.0px;
+  height: 207.0px;
+  background: var(--illustration-bg);
+  border-radius: 24px;
+  left: 0;
+  top: 0;
+}
+
+/* Each vector within the group is positioned using local offsets derived from YAML absolute coordinates.
+   Local-left = vector.x - group.xBase; group.xBase is 3293 frame mapped. We use approximate mapping per observed image for central aesthetic, since many decorative dots exist.
+   To keep pixel fidelity while avoiding subpixel noise, we'll visually center and place main notable vectors that are visible. */
+.success-illustration img {
+  position: absolute;
+  image-rendering: -webkit-optimize-contrast;
+  pointer-events: none;
+}
+
+/* Pre-calc base top/left for group offsets:
+   Frame origin (screen top-left) at Figma y=3055, x=-3293.
+   Group 'Success Illustration' top-left: x=-3216, y=3293.
+   So any child absolute (Figma) minus (-3216,3293) = local offsets.
+*/
+
+/* Example precise placements for the key vectors that provide visible details around the rounded square */
+.v-199-10 { left: 41.0px; top: 59.9px; width: 21.15px; height: 21.15px; }
+.v-199-11 { left: 151.2px; top: 12.5px; width: 10.29px; height: 11.06px; }
+.v-199-12 { left: 193.4px; top: 100.2px; width: 13.22px; height: 13.99px; }
+.v-199-13 { left: 17.4px; top: 144.0px; width: 15.54px; height: 17.01px; }
+.v-199-14 { left: 193.2px; top: 176.1px; width: 11.83px; height: 12.06px; }
+.v-199-15 { left: 58.3px; top: 180.7px; width: 13.99px; height: 14.69px; }
+.v-199-17 { left: 2.3px; top: 96.9px; width: 10.67px; height: 10.75px; }
+.v-199-19 { left: 153.8px; top: 66.0px; width: 14.10px; height: 12.34px; }
+.v-199-20 { left: 173.96px; top: 137.5px; width: 19.80px; height: 20.49px; }
+
+.v-199-30 { left: 35.75px; top: 12.34px; width: 35.25px; height: 42.30px; }
+.v-199-31 { left: 0.0px; top: 77.55px; width: 37.01px; height: 10.57px; }
+.v-199-32 { left: 44.56px; top: 140.99px; width: 24.67px; height: 35.25px; }
+.v-199-33 { left: 166.17px; top: 118.08px; width: 45.82px; height: 14.10px; }
+.v-199-34 { left: 155.60px; top: 68.73px; width: 49.35px; height: 19.39px; }
+.v-199-35 { left: 147.63px; top: 21.57px; width: 33.17px; height: 24.33px; }
+.v-199-37 { left: 16.36px; top: 118.08px; width: 33.49px; height: 10.57px; }
+.v-199-38 { left: 78.24px; top: 27.67px; width: 9.10px; height: 24.65px; }
+.v-199-39 { left: 127.81px; top: 36.08px; width: 8.09px; height: 21.18px; }
+.v-199-41 { left: 129.46px; top: 156.69px; width: 9.13px; height: 41.59px; }
+.v-199-42 { left: 155.60px; top: 156.59px; width: 15.41px; height: 27.77px; }
+
+/* Heading: 'Congratulations!' from YAML
+   text box at x:-3203.5 y:3532.48 width:196 height:32 within frame x:-3293 y:3055
+   Local: left = 89.5, top = 477.48
+*/
+.title {
+  position: absolute;
+  left: 89.5px;
+  top: 477.48px;
+  width: 196px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+/* Subtitle block from YAML: x:-3221.5 y:3580.48 width:232 height:48
+   Local: left=71.5, top=525.48
+*/
+.subtitle {
+  position: absolute;
+  left: 71.5px;
+  top: 525.48px;
+  width: 232px;
+  height: 48px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+/* CTA button group from YAML: x:-3269 y:3771 width:327 height:62
+   Frame origin -> local: left=24, top=716
+*/
+.cta {
+  position: absolute;
+  left: 24px;
+  top: 716px;
+  width: 327px;
+  height: 62px;
+  border: none;
+  border-radius: 12px;
+  background: var(--cta-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(255, 122, 26, 0.28);
+}
+
+.cta:active {
+  background: var(--cta-bg-pressed);
+}
+
+.cta span {
+  color: var(--cta-text);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}

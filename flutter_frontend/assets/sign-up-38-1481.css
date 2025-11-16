@@ -1,0 +1,145 @@
+:root {
+  /* Color guesses from screenshot/YAML context */
+  --bg-canvas: #0d0f1a;         /* deep navy for header region */
+  --bg-card: #ffffff;
+  --field-bg: #edf1f5;          /* light gray input background */
+  --label-text: #9aa3ad;        /* muted label */
+  --primary-text: #ffffff;
+  --title-text: #ffffff;
+  --subtitle-text: rgba(255,255,255,0.8);
+  --button-bg: #ff7a21;         /* orange CTA */
+  --button-text: #ffffff;
+  --shadow: 0 10px 24px rgba(0,0,0,0.08);
+  --radius-card: 20px;
+  --radius-field: 10px;
+  --radius-button: 12px;
+}
+
+* { box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-canvas);
+  height: 100%;
+}
+body { display: flex; align-items: flex-start; justify-content: center; }
+
+.screen-38-1481 {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  background: var(--bg-canvas);
+  overflow: hidden;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Background assets */
+.bg-asset { position: absolute; left: -83px; top: -94px; width: 552px; height: 449px; }
+.bg-ellipse {
+  position: absolute; left: 0; top: 0; width: 177px; height: 177px;
+  background: radial-gradient(circle at 45% 45%, #1f2331 0%, #10131f 70%, #0d0f1a 100%);
+  border-radius: 50%;
+}
+.bg-pattern {
+  position: absolute; left: 351px; top: 5px; width: 201px; height: 444px;
+  background-image: url("/assets/figmaimages/figma_image_38_1481.png");
+  background-repeat: no-repeat;
+  background-size: 201px 444px;
+  opacity: 0.35; mix-blend-mode: normal;
+}
+
+/* Back button (x:-999,y:1085 on artboard -> relative: left:24px, top:50px) */
+.back-btn {
+  position: absolute; left: 24px; top: 50px; width: 45px; height: 45px;
+  background: transparent; border: 0; padding: 0; cursor: pointer;
+}
+.back-ellipse { position: absolute; left: 0; top: 0; width: 45px; height: 45px; display: block; }
+.back-arrow {
+  position: absolute; left: 20px; top: 17px; width: 5px; height: 10px;
+  border-right: 2px solid #222; border-bottom: 2px solid #222;
+  transform: rotate(135deg);
+}
+
+/* Title and subtitle */
+.title {
+  position: absolute; left: 131px; top: 119px;
+  margin: 0;
+  font-weight: 700;
+  font-size: 28px; /* 36px height noted -> font-size ~28 with line-height 36 */
+  line-height: 36px;
+  color: var(--title-text);
+  text-align: center;
+}
+.subtitle {
+  position: absolute; left: 79px; top: 158px;
+  margin: 0;
+  width: 218px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+  color: var(--subtitle-text);
+  text-align: center;
+}
+
+/* White Card block (x:-1023,y:1268 height 579) -> top ~ 233px */
+.white-card {
+  position: absolute; left: 0; top: 233px; width: 375px; height: 579px;
+  background: var(--bg-card);
+  border-top-left-radius: var(--radius-card);
+  border-top-right-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+}
+
+/* Field groups - exact positions from YAML transformed to relative */
+.field-group { position: absolute; width: 327px; }
+.label {
+  display: block;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--label-text);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.input-rect {
+  position: relative;
+  width: 327px; height: 62px;
+  background: var(--field-bg);
+  border-radius: var(--radius-field);
+}
+.input-text {
+  position: absolute; left: 20px; top: 22px;
+  font-size: 14px; line-height: 17px; color: #93a0ad;
+}
+.input-text.dots { letter-spacing: 3px; }
+
+.eye-off { position: absolute; right: 16px; top: 24px; width: 14px; height: 14px; }
+.eye-off .eye-outer, .eye-off .eye-inner { position: absolute; left: 0; top: 0; width: 14px; height: 14px; display: block; pointer-events: none; }
+.eye-off .eye-inner { top: 1.91px; height: 10.18px; }
+
+/* Group positions (transforming Figma x,y to within 375 canvas) */
+.name-group { left: 24px; top: 257px; }     /* y:1292 -> relative top: 1292-1035 = 257 */
+.email-group { left: 24px; top: 367px; }    /* 1402-1035 */
+.password-group { left: 24px; top: 477px; } /* 1512-1035 */
+.retype-group { left: 24px; top: 587px; }   /* 1622-1035 */
+
+/* CTA Button (x:-999, y:1755) -> left:24, top:720 */
+.cta-button {
+  position: absolute; left: 24px; top: 720px;
+  width: 327px; height: 62px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none; border-radius: var(--radius-button);
+  font-size: 14px; font-weight: 700; letter-spacing: 0.3px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(255, 122, 33, 0.35);
+}
+.cta-button span { position: relative; top: 0; }
+
+@media (max-width: 375px) {
+  body { align-items: flex-start; }
+  .screen-38-1481 { width: 100vw; }
+  .white-card { width: 100vw; }
+  .cta-button, .field-group, .input-rect { width: calc(100vw - 48px); }
+}

@@ -1,0 +1,151 @@
+:root{
+  --bg-canvas:#ffffff;
+  --text-primary:#1A1D1F;
+  --text-secondary:#7C8795;
+  --text-label:#9AA5B1;
+  --brand:#FF8A00; /* button orange */
+  --brand-pressed:#FF7A00;
+  --pill-fill:#FFE7D1; /* active size fill (light orange) */
+  --pill-stroke:#F2F4F7;
+  --card:#F7F9FC;
+  --image-bg:#C7CFD9;
+  --chip-bg:#FFF2EC;
+  --chip-border:#FFD9C6;
+  --muted:#E9EEF3;
+  --qty-bg:#141821; /* dark pill background in qty */
+  --white:#ffffff;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg-canvas);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color:var(--text-primary);
+}
+.canvas{
+  position:relative;
+  width:375px;
+  height:903px;
+  margin:0 auto;
+  background:var(--bg-canvas);
+  overflow:hidden;
+  border-radius:24px;
+}
+.abs{position:absolute;}
+.text{line-height:1;}
+.text.semibold{font-weight:600; font-size:18px; letter-spacing:0.2px;}
+.text.title{font-weight:700; font-size:20px;}
+.text.body{font-weight:400; font-size:14px; color:var(--text-secondary);}
+.text.medium{font-weight:600; font-size:14px; color:var(--text-primary);}
+.text.small{font-size:13px;}
+.text.label{font-size:12px; color:var(--text-label); text-transform:capitalize;}
+.text.price-bold{font-weight:700; font-size:28px;}
+.pill-text-dark{font-weight:700; font-size:15px; color:#111;}
+.pill-text-light{font-weight:700; font-size:15px; color:#fff;}
+
+.icon-back{
+  position:absolute;
+  width:5px; height:10px;
+  border-right:2px solid #1A1D1F;
+  border-bottom:2px solid #1A1D1F;
+  transform:rotate(135deg);
+}
+
+#heading-image{
+  background:var(--image-bg);
+  border-radius:16px;
+}
+
+/* Vendor pill */
+#vendor-pill .vendor-bg{
+  position:absolute; left:0; top:0; width:201px; height:47px;
+  background:#ffffff;
+  border-radius:24px;
+  box-shadow:0 6px 20px rgba(20,24,33,0.08);
+}
+
+/* Ratings/clock */
+#time .clock-outer{
+  position:absolute; left:0; top:0; width:20px; height:20px; border-radius:50%;
+  border:2px solid #222;
+}
+#time .clock-inner{
+  position:absolute; left:9px; top:4px; width:2px; height:8px; background:#222; border-radius:1px;
+}
+
+/* Size pills */
+.size-pill{
+  border-radius:24px;
+}
+.pill-outline{
+  background:#fff;
+  border:1px solid var(--pill-stroke);
+}
+.pill-filled{
+  background:var(--brand);
+  color:#fff;
+}
+
+/* Ingredients */
+.ingredient{
+  position:absolute;
+  width:50px; height:73px;
+}
+.ingredient .ing-bg{
+  position:absolute; left:0; top:0; width:50px; height:50px;
+  background:var(--chip-bg);
+  border:1px solid var(--chip-border);
+  border-radius:12px;
+}
+.ing-icon{
+  position:absolute; left:13px; top:13px; width:24px; height:24px;
+}
+.ing-icon-svg{
+  position:absolute; left:13px; top:13px; width:24px; height:24px;
+  background:#1a1d1f; mask-size:cover; -webkit-mask-size:cover;
+}
+.ing-icon-svg.broccoli{ mask-image: url('assets/figmaimages/figma_image_none_broccoli.svg'); -webkit-mask-image: url('assets/figmaimages/figma_image_none_broccoli.svg');}
+.ing-icon-svg.orange{ mask-image: url('assets/figmaimages/figma_image_none_orange.svg'); -webkit-mask-image: url('assets/figmaimages/figma_image_none_orange.svg');}
+.ing-icon-svg.walnut{ mask-image: url('assets/figmaimages/figma_image_none_walnut.svg'); -webkit-mask-image: url('assets/figmaimages/figma_image_none_walnut.svg');}
+
+.ingredient .ing-name{
+  position:absolute; left:3px; top:55px; width:44px; text-align:center;
+  font-size:12px; color:#333;
+}
+.ingredient.tall .ing-name.two{
+  line-height:12px;
+}
+
+/* Add to cart area */
+#add-cart .addcart-bg{
+  position:absolute; left:0; top:0; width:375px; height:184px;
+  background:#fff;
+  box-shadow:0 -12px 40px rgba(20,24,33,0.08);
+  border-top-left-radius:24px; border-top-right-radius:24px;
+}
+
+.qty-wrapper .qty-bg{
+  position:absolute; left:0; top:0; width:125px; height:48px;
+  background:#0E1420;
+  border-radius:24px;
+}
+.circle{
+  position:absolute; width:24px; height:24px; border-radius:50%;
+  background:#1F2733;
+  display:flex; align-items:center; justify-content:center;
+}
+.minus-line{ width:8px; height:2px; background:#fff; border-radius:2px;}
+.plus .plus-h{ position:absolute; width:8px; height:2px; background:#fff; border-radius:2px;}
+.plus .plus-v{ position:absolute; width:2px; height:8px; background:#fff; border-radius:2px;}
+
+.qty-number{ color:#fff; font-weight:700; font-size:15px; text-align:center;}
+
+button.cta{
+  border:none; border-radius:16px;
+  background:var(--brand);
+  color:#fff; font-weight:700; font-size:16px;
+  letter-spacing:0.2px;
+  box-shadow:0 12px 30px rgba(255,138,0,0.35);
+}
+button.cta:active{ background:var(--brand-pressed); }

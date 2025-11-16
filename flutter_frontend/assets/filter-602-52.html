@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Filter Screen (602:52)</title>
+  <link rel="stylesheet" href="filter-602-52.css" />
+</head>
+<body>
+  <div id="screen" class="screen">
+    <!-- Background canvas -->
+    <img class="screen-bg" alt="Filter screen background" src="assets/figmaimages/figma_image_602_52.png" />
+
+    <!-- Dark overlay (Rectangle 1359) -->
+    <div class="rect-1359"></div>
+
+    <!-- Filter modal group (Fiter) -->
+    <div class="filter-modal">
+      <!-- Bg Shape -->
+      <div class="filter-modal-bg"></div>
+
+      <!-- Title -->
+      <div class="filter-title">Filter your search</div>
+
+      <!-- Close/Cross -->
+      <button class="btn-close" aria-label="Close filter">
+        <span class="close-dot"></span>
+      </button>
+
+      <!-- Offers -->
+      <div class="group-offers">
+        <div class="label">Offers</div>
+
+        <button class="chip chip-active chip-delivery">Delivery</button>
+        <button class="chip chip-default chip-pickup">Pick Up</button>
+        <button class="chip chip-default chip-offer">Offer</button>
+
+        <button class="chip chip-long chip-default chip-online">Online payment available</button>
+      </div>
+
+      <!-- Delivery Time -->
+      <div class="group-delivery-time">
+        <div class="label">Deliver Time</div>
+
+        <button class="chip chip-active chip-1015">10-15 min</button>
+        <button class="chip chip-default chip-20">20 min</button>
+        <button class="chip chip-default chip-30">30 min</button>
+      </div>
+
+      <!-- Pricing -->
+      <div class="group-pricing">
+        <div class="label">Pricing</div>
+
+        <button class="pill pill-default pill-1">$</button>
+        <button class="pill pill-selected pill-2">$$</button>
+        <button class="pill pill-default pill-3">$$$</button>
+      </div>
+
+      <!-- Rating -->
+      <div class="group-rating">
+        <div class="label">Rating</div>
+
+        <button class="star star-01" aria-label="Rating 1">
+          <span class="star-icon"></span>
+        </button>
+        <button class="star star-02" aria-label="Rating 2">
+          <span class="star-icon"></span>
+        </button>
+        <button class="star star-03" aria-label="Rating 3">
+          <span class="star-icon"></span>
+        </button>
+        <button class="star star-04" aria-label="Rating 4">
+          <span class="star-icon"></span>
+        </button>
+        <button class="star star-05" aria-label="Rating 5">
+          <span class="star-icon-filled"></span>
+        </button>
+      </div>
+
+      <!-- Bottom Filter Button -->
+      <button class="cta-filter">Filter</button>
+    </div>
+  </div>
+
+  <script src="filter-602-52.js"></script>
+</body>
+</html>

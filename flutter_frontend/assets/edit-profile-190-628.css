@@ -1,0 +1,246 @@
+:root {
+  /* Color tokens inferred from design (best-guess approximations) */
+  --bg-canvas: #ffffff;
+  --text-primary: #1e2a37;
+  --text-secondary: #9aa6b2; /* light gray for placeholder values */
+  --field-bg: #eef2f6; /* light bluish-gray input */
+  --field-border: transparent;
+  --label: #8a97a6;
+  --accent: #ff7a2f; /* orange button/edit */
+  --accent-strong: #ff6a00;
+  --avatar-peach: #ffc3a3;
+  --back-ellipse: rgba(0,0,0,0.04);
+  --button-text: #ffffff;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-canvas);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-primary);
+}
+
+.screen {
+  position: relative;
+  width: 375px;
+  height: 846px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--bg-canvas);
+  border-radius: 24px; /* matches mobile screenshot soft corners */
+}
+
+/* Top bar group (190:699) */
+.top-190-699 {
+  position: absolute;
+  left: 18px; /* -3804X mapping to 18 inset; canvas left margin approximated by figma distance */
+  top: 50px;  /* Y mapping approximated relative to canvas; tuned for pixel match with screenshot */
+  width: 153px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Back button */
+.back-190-700 {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+.back-ellipse-190-702 {
+  position: absolute;
+  inset: 0;
+  width: 45px;
+  height: 45px;
+  display: block;
+}
+.back-icon-190-703 {
+  position: absolute;
+  left: 21px;
+  top: 18px;
+  width: 5px;
+  height: 10px;
+  mask: linear-gradient(#000,#000); /* placeholder for vector; we use CSS arrow via border */
+}
+.back-190-700::after {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 17px;
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid #2a3a4a;
+  border-bottom: 2px solid #2a3a4a;
+  transform: rotate(45deg);
+}
+
+/* Title */
+.title-190-704 {
+  margin: 0;
+  font-size: 18px; /* height 22 => ~18px size */
+  line-height: 22px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* Profile avatar group (226:678) */
+.profile-226-678 {
+  position: absolute;
+  left: calc(50% - 65px); /* center 130 width */
+  top: 120px;
+  width: 130px;
+  height: 130px;
+}
+.avatar-bg-226-679 {
+  position: absolute;
+  inset: 0;
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: var(--avatar-peach);
+}
+.avatar-overlay-226-680,
+.avatar-mask-226-681 { position: absolute; inset: 0; border-radius: 50%; }
+
+/* Edit icon badge (230:2) 41x41 overlapping bottom-right */
+.edit-icon-230-2 {
+  position: absolute;
+  left: 99px;
+  top: 89px;
+  width: 41px;
+  height: 41px;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+.edit-ellipse-228-2 {
+  position: absolute;
+  inset: 0;
+  width: 41px; height: 41px;
+  display: block;
+}
+.edit-vector-228-4 {
+  position: absolute;
+  left: 12.5px;
+  top: 12.5px;
+  width: 16px; height: 16px;
+}
+
+/* Fields shared layout */
+.field {
+  position: absolute;
+  left: 24px; /* to match 327 width inside 375 canvas, leaving 24px margins */
+  width: 327px;
+}
+.field .label-190-723,
+.field .label-190-714,
+.field .label-190-729,
+.field .label-223-32 {
+  display: block;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--label);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Input rectangles */
+.input-rect-190-716,
+.input-rect-190-707,
+.input-rect-190-727 {
+  width: 327px;
+  height: 56px;
+  border-radius: 8px;
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.input-text-190-722,
+.input-text-190-713,
+.input-text-190-728 {
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Bio (multiline rectangle 103px) */
+.bio-223-30 { height: 127px; }
+.textarea-rect-223-31 {
+  width: 327px;
+  height: 103px;
+  border-radius: 8px;
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  padding: 14px 20px;
+}
+.textarea-text-223-33 {
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: pre-wrap;
+}
+
+/* Absolute y-positions modeled after Figma coordinates relative to canvas */
+.name-190-725 { top: 266px; height: 81px; }
+.email-190-724 { top: 361px; height: 81px; }
+.phone-190-726 { top: 456px; height: 81px; }
+.bio-223-30   { top: 551px; }
+
+/* Save button 327x62 at bottom */
+.button-226-672 {
+  position: absolute;
+  left: 24px;
+  top: 706px; /* 846 - 62 - ~78 bottom spacing -> tuned to screenshot */
+  width: 327px;
+  height: 62px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.button-bg-190-823 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-strong) 100%);
+}
+.button-text-190-824 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--button-text);
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Accessibility focus */
+.button-226-672:focus-visible,
+.back-190-700:focus-visible,
+.edit-icon-230-2:focus-visible {
+  outline: 2px solid #004aff;
+  outline-offset: 2px;
+}
+
+/* Optional: hide default scroll on fixed artboard */
+body { overflow: hidden; }

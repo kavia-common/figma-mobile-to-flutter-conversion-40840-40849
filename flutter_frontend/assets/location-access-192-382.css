@@ -1,0 +1,163 @@
+:root {
+  /* Colors inferred from screenshot + semantic tokens */
+  --bg-canvas: #ffffff;
+  --primary-text: #6b6f7a; /* muted gray for note text (approx from screenshot) */
+  --button-bg: #ff7f32;   /* vibrant orange from screenshot */
+  --button-bg-pressed: #e56e28;
+  --button-text: #ffffff;
+  --pin-ring: rgba(255,255,255,0.35);
+
+  /* Sizing */
+  --screen-w: 375px;
+  --screen-h: 812px;
+
+  /* Typography (assume Helvetica Neue fallback) */
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+
+  /* Rounded radii */
+  --radius-lg: 30px;   /* for illustration large squircle */
+  --radius-btn: 12px;  /* for button corners */
+  --radius-pill: 16px; /* for circular pin background */
+}
+
+/* Root reset */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #app {
+  margin: 0;
+  height: 100%;
+  background: var(--bg-canvas);
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+/* Frame container (fixed size for pixel-perfect rendering) */
+.screen.location-access {
+  position: relative;
+  width: var(--screen-w);
+  height: var(--screen-h);
+  background: var(--bg-canvas);
+  overflow: hidden;
+  font-family: var(--font-sans);
+}
+
+/* Top illustration (Rectangle 4177 from YAML) 
+   YAML dims (x:-484,y:1211,w:206,h:250) are relative to Figma doc;
+   from the screenshot, this element sits centered near top with generous margin. */
+.hero-illustration {
+  position: absolute;
+  /* Based on visual: width 206, height 250, centered horizontally */
+  width: 206px;
+  height: 250px;
+  left: calc(50% - 103px);
+  top: 120px; /* inferred from screenshot spacing */
+  background: #9AA7B5; /* de-saturated blue-gray approximate */
+  border-radius: 48px; /* softened squircle-like corners */
+}
+
+/* Access button (frame shows 327x62 at y ~1554.5 global; within 812 frame it's ~top 470ish)
+   From screenshot: centered width 327, height 62 with strong orange and inner icon */
+.btn-access {
+  position: absolute;
+  width: 327px;
+  height: 62px;
+  left: calc(50% - 163.5px);
+  top: 476px; /* tuned for pixel match to screenshot */
+  border: 0;
+  outline: 0;
+  border-radius: var(--radius-btn);
+  background: var(--button-bg);
+  color: var(--button-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.04);
+  transition: background 0.15s ease-in-out, transform 0.05s ease-in-out;
+}
+
+.btn-access:active {
+  background: var(--button-bg-pressed);
+  transform: translateY(1px);
+}
+
+.btn-access .btn-label {
+  font-weight: 700; /* bold as in Figma 'Access LOCATION' */
+  text-transform: uppercase;
+  font-size: 16px; /* approx 16 px visual */
+  letter-spacing: 0.3px;
+  line-height: 19px; /* YAML height for text 19 */
+}
+
+/* Map pin container on the right inside button */
+.btn-access .map-pin {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+/* Background ellipse from YAML id 192:387 (imagePath provided) */
+.btn-access .map-pin .pin-bg {
+  position: absolute;
+  inset: 0;
+  width: 32px;
+  height: 32px;
+  display: block;
+  border-radius: 50%;
+}
+
+/* Vector pin (inner) 16x16 placed centered within the 32 circle per YAML (x offset shows 8px inset) */
+.btn-access .map-pin .pin-vector {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 8px;
+  top: 8px;
+  display: block;
+}
+
+/* Footer note text */
+.note {
+  position: absolute;
+  width: 323px;
+  left: calc(50% - 161.5px);
+  top: 556px; /* below the button per screenshot */
+  margin: 0;
+  text-align: center;
+  color: var(--primary-text);
+  font-size: 12px; /* inferred small caption */
+  font-weight: 600; /* semi-bold to match strong small caps feel */
+  letter-spacing: 0.6px;
+  line-height: 16px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* Optional: highlight focus for accessibility */
+.btn-access:focus-visible {
+  outline: 2px solid #ffffff;
+  box-shadow: 0 0 0 3px rgba(255,127,50,0.45);
+  outline-offset: 2px;
+}
+
+/* Make sure the layout remains pixel-perfect on desktop by centering the frame.
+   On very small mobile preview containers, allow scale down if necessary */
+@media (max-width: 375px) {
+  html, body {
+    width: 100%;
+  }
+  .screen.location-access {
+    width: 100vw;
+    height: calc(100vw * 812 / 375);
+    transform-origin: top left;
+  }
+}

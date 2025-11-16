@@ -1,0 +1,165 @@
+:root{
+  --bg-canvas:#ffffff;
+  --bg-map:#d4dde4; /* inferred bluish gray from image */
+  --text-primary:#1E1E1E; /* dark text */
+  --text-secondary:#8A8A8A; /* gray text */
+  --text-muted:#9AA4AE; /* lighter gray for timeline subtext */
+  --accent:#FF8C00; /* warm orange route */
+  --accent-end:#FFD059; /* yellow end cap */
+  --card-bg:#ffffff;
+  --card-shadow:0 -8px 24px rgba(0,0,0,0.08);
+  --chip-dark:#0F141C; /* back button dark disk */
+  --brand-green:#22C55E; /* check fill inferred */
+}
+
+*{box-sizing:border-box}
+html,body{
+  margin:0;padding:0;height:100%;
+  background:var(--bg-canvas);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+.screen{
+  position:relative;
+  width:375px;
+  height:812px;
+  margin:0 auto;
+  background:var(--bg-canvas);
+  overflow:hidden;
+  border-radius:28px; /* from screenshot rounded corners */
+}
+
+/* Map area fills top 70% visually until card overlaps */
+.map-canvas{
+  position:absolute; left:0; top:0; width:375px; height:560px;
+  background:var(--bg-map);
+}
+.vec{position:absolute; pointer-events:none; opacity:.6}
+/* Place a few decorative vectors approximately where they appear (from YAML rough layout) */
+.img-203-12{ left:160px; top:510px; width:58px; height:22px }
+.img-203-13{ left:28px; top:485px; width:58px; height:34px }
+.img-203-14{ right:12px; top:530px; width:45px; height:21px }
+
+/* Route Group — approximate to figma vectors */
+.route{ position:absolute; left:60px; top:128px; width:255px; height:256px; }
+.route-path{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle 6px at 95% 5%, var(--accent-end) 0 70%, transparent 71%),
+    conic-gradient(from 90deg at 50% 50%, var(--accent) 0 70%, var(--accent-end) 70% 100%);
+  /* Use an SVG-like route shape via mask image approximation */
+  -webkit-mask:
+    path("M20,220 L90,170 L85,140 L130,120 L155,95 L190,88 L205,60") 0 / contain no-repeat;
+  mask:
+    path("M20,220 L90,170 L85,140 L130,120 L155,95 L190,88 L205,60") 0 / contain no-repeat;
+  /* Fallback: draw with border for browsers without mask-path */
+  border-left:6px solid var(--accent);
+  border-image: linear-gradient(180deg, var(--accent), var(--accent-end)) 1;
+}
+.pin-base{
+  position:absolute; left:0px; top:204px; width:62px; height:62px;
+}
+.pin-glyph{
+  position:absolute; left:12px; top:216px; width:20.4px; height:24.94px;
+}
+.dest-dot{
+  position:absolute; right:4px; top:0px; width:17.66px; height:17.66px;
+  background:var(--accent-end);
+  border-radius:50%;
+  box-shadow:0 0 0 4px rgba(255,140,0,0.35) inset;
+}
+
+/* Top bar */
+.topbar{
+  position:absolute; left:20px; top:18px; height:45px; width:157px;
+  display:flex; align-items:center; gap:12px;
+}
+.back-btn{
+  position:relative; width:45px; height:45px; border:0; background:none; padding:0; cursor:pointer;
+}
+.back-bg{ position:absolute; inset:0; width:45px; height:45px; border-radius:50% }
+.back-icon{
+  position:absolute; left:21px; top:17px; width:5px; height:10px;
+  border-right:2px solid #fff; border-bottom:2px solid #fff; transform:rotate(135deg);
+}
+.top-title{
+  font-weight:700; font-size:18px; line-height:22px; color:#2B2B2B;
+}
+
+/* Bottom card */
+.bottom-card{
+  position:absolute; left:0; bottom:0; width:375px; height:372px; /* from YAML: card h=572 shown clipped; visible part ~372 */
+  background:var(--card-bg);
+  border-radius:24px 24px 0 0;
+  box-shadow: var(--card-shadow);
+}
+.card-rail{
+  position:absolute; left:152px; top:6px; width:70px; height:7px; border-radius:3.5px;
+  background:#E7EDF3;
+}
+
+/* Restaurant row */
+.restaurant{
+  position:absolute; left:24px; top:24px; width:327px; height:98px;
+  display:flex; gap:16px; align-items:flex-start;
+}
+.rest-img{ position:relative; width:63px; height:63px; border-radius:12px; overflow:hidden }
+.rest-img-bg{ position:absolute; inset:0; background:#F0F3F7; border-radius:12px }
+.rest-img-photo{
+  position:absolute; left:-32px; top:-4px; width:135px; height:79px; object-fit:cover;
+}
+.rest-info{ flex:1; min-width:0 }
+.rest-name{ font-weight:700; font-size:16px; line-height:22px; color:#2B2B2B }
+.order-time{ margin-top:5px; font-size:12px; line-height:17px; color:var(--text-secondary) }
+.items{ margin-top:12px; display:flex; gap:24px }
+.item{ font-size:12px; line-height:16px; color:#6B7280 }
+
+/* Tracking block */
+.tracking{
+  position:absolute; left:24px; top:146px; right:24px;
+}
+.eta{ display:flex; justify-content:space-between; align-items:flex-end }
+.eta-time{ font-weight:700; font-size:28px; line-height:36px; color:#2B2B2B }
+.eta-label{ font-size:14px; line-height:24px; color:var(--text-secondary) }
+
+.timeline{ margin-top:16px; display:grid; grid-template-columns:24px 1fr; column-gap:16px }
+.tl-col{ position:relative }
+.tl-col-text{ display:grid; row-gap:14px; }
+.tl-text{ font-size:12px; line-height:16px; color:var(--text-secondary) }
+.tl-text.tl1{ color:#2B2B2B } /* first line darker per screenshot */
+.tl-col-markers{ display:flex; flex-direction:column; align-items:center; }
+.tl-dot{ width:16px; height:16px; border-radius:50%; position:relative; }
+.tl-dot.large{ width:17px; height:17px }
+.tl-dot.medium{ width:16px; height:16px }
+.tl-dot.done{ background:#34D399; display:grid; place-items:center; }
+.tl-dot.done img{ width:17px; height:17px }
+.tl-dot.inprogress{ background:#34D399; opacity:.2; display:grid; place-items:center; }
+.tl-dot.inprogress img{ width:16px; height:16px }
+.tl-dot.todo{ background:#FFFFFF; border:2px solid #D1D5DB }
+
+.tl-line{ width:2px; background:#E5E7EB; flex:1; }
+.tl-line-1{ height:46px; margin:6px 0 }
+.tl-line-2{ height:48px; margin:6px 0 }
+
+/* Contact block */
+.contact{
+  position:absolute; left:0; right:0; bottom:0; height:116px; padding:16px 24px;
+  background:#F8FBFF; border-top:1px solid #EDF2F7; border-radius:0 0 24px 24px;
+  display:flex; align-items:center; gap:16px;
+}
+.profile{ position:relative; width:54px; height:54px; }
+.profile-ring{ position:absolute; inset:0; border-radius:50%; background:#E6EEF7 }
+.profile-photo{ position:absolute; left:-20px; top:-3px; width:94.5px; height:63.45px; object-fit:cover; border-radius:50% }
+.contact-text{ flex:1; }
+.name{ font-weight:700; font-size:16px; line-height:24px; color:#2B2B2B }
+.role{ font-size:14px; line-height:24px; color:var(--text-secondary) }
+.actions{ display:flex; gap:16px }
+.btn{ position:relative; width:45px; height:45px; border:0; background:none; padding:0; border-radius:50%; cursor:pointer }
+.call .call-bg{ position:absolute; inset:0; width:45px; height:45px }
+.call .call-icon{ position:absolute; left:13px; top:13px; width:18px; height:18px }
+.chat .chat-bg{ position:absolute; inset:0; background:#EAF2FF; border-radius:50% }
+.chat .chat-icon{ position:absolute; left:12px; top:12px; width:22px; height:22px }
+
+/* Accessibility focus */
+.btn:focus-visible, .back-btn:focus-visible{
+  outline:2px solid #2563EB; outline-offset:2px;
+}

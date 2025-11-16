@@ -63,6 +63,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    # Keep these entries: the HTML/CSS/JS are stored at repository root /assets
     - .env
     - assets/
     - assets/figmaimages/

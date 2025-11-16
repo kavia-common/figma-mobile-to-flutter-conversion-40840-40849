@@ -19,3 +19,4 @@ iOS:
 Note:
 - This project serves HTML via a data URL with <base href="/assets/"> so that root-level images referenced as /assets/figmaimages/... resolve correctly from the Flutter bundle.
 - All HTML/CSS/JS assets live in repository root /assets and are declared in pubspec.yaml under assets: - assets/ and - assets/figmaimages/
+- Defensive logging is enabled for webview asset loads; failures will show a readable in-webview fallback error page indicating the missing asset path and error details. This helps diagnose typos like "aaddress-226-68.html" vs "address-226-68.html".

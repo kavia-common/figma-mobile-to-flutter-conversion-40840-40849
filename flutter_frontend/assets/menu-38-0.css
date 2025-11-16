@@ -1,0 +1,137 @@
+:root{
+  --bg-canvas:#FFFFFF;
+  --text-primary:#2A2A2A; /* dark gray for titles */
+  --text-secondary:#9AA3AF; /* light gray for subtitle */
+  --title-color:#0F172A; /* nav title */
+  --card-bg:#F6F8FB; /* light gray card background seen in image */
+  --ellipse-bg:#EEF2F6; /* soft circular icon bg */
+  --ellipse-bg-hard:#FDF3F0; /* slightly warm for some rows */
+  --accent:#FF7E6D; /* peach accent seen in avatar circle */
+  --chev:#C5CCD6; /* chevron vector */
+  --shadow:0 8px 24px rgba(16,24,40,0.06);
+}
+
+*{box-sizing:border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+html,body{margin:0; padding:0; background:var(--bg-canvas); height:100%;}
+body{display:flex; align-items:flex-start; justify-content:center; font-family:Helvetica Neue, Arial, sans-serif;}
+
+#canvas{
+  position:relative;
+  width:375px;
+  height:996px;
+  background:var(--bg-canvas);
+  overflow:hidden;
+  border-radius:28px;
+  box-shadow:0 0 0 1px rgba(0,0,0,0.03);
+}
+
+.bg-image{
+  position:absolute;
+  inset:0;
+  width:375px;
+  height:996px;
+  object-fit:cover;
+  opacity:0; /* keep for reference but hidden */
+  pointer-events:none;
+}
+
+/* Common groups */
+.g{position:absolute;}
+
+.text{position:absolute; color:var(--text-primary);}
+
+.title{
+  font-weight:600;
+  font-size:18px;
+  line-height:22px;
+  color:var(--title-color);
+  letter-spacing:0.2px;
+}
+
+/* Top buttons */
+.btn-bg, .more-ellipse{
+  position:absolute;
+  border-radius:50%;
+  background:#EEF2F6;
+}
+.back-arrow{
+  position:absolute;
+  width:5px; height:10px;
+  border-right:2px solid var(--title-color);
+  border-top:2px solid var(--title-color);
+  transform:rotate(-135deg);
+  border-left:0; border-bottom:0;
+  background:transparent;
+}
+.more-dots{position:absolute;}
+.more-dots .dot{
+  position:absolute; top:0; width:2px; height:2px; background:#9AA3AF; border-radius:50%;
+}
+
+/* Profile */
+.avatar-bg{
+  position:absolute;
+  width:100px; height:100px; border-radius:50%;
+  background:var(--accent);
+}
+.avatar-mask{
+  position:absolute;
+  width:100px; height:100px; border-radius:50%;
+  background:transparent; /* Placeholder for mask group */
+}
+.profile-name{
+  font-weight:700; font-size:16px; line-height:24px; color:#111827;
+}
+.profile-sub{
+  font-weight:500; font-size:12px; line-height:24px; color:var(--text-secondary);
+}
+
+/* Cards */
+.card{position:absolute;}
+.card .card-bg{
+  position:absolute; inset:0;
+  background:var(--card-bg);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+}
+.row{position:absolute;}
+.icon-circle{
+  position:absolute; width:40px; height:40px; border-radius:50%;
+}
+.icon-circle.soft{background:#E9F3FF;} /* light bluish per screenshot */
+.icon-circle.hard{background:#F6F0FF;} /* another tint per screenshot */
+.row-icon{position:absolute; left:14px; top:12px; width:14px; height:16px;}
+.row-icon.svg-wrap img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain;}
+/* Person vector approximations */
+.row-icon.person .v1{
+  position:absolute; left:0; right:0; bottom:0; height:5px; border-radius:3px; background:#ADB5BD;
+}
+.row-icon.person .v2{
+  position:absolute; width:6px; height:6px; left:4px; top:0; border-radius:50%; background:#ADB5BD;
+}
+
+/* Map composed lines */
+.row .map{position:absolute; background:#A7B0BA;}
+.row .map.v1{left:0; top:0; width:14px; height:12.73px; border:1.5px solid #A7B0BA; border-radius:3px; background:transparent;}
+.row .map.v2{left:8.454px; top:0; width:0px; height:10.18px; border-left:1.5px solid #A7B0BA;}
+.row .map.v3{left:3.545px; top:2.546px; width:0px; height:10.18px; border-left:1.5px solid #A7B0BA;}
+
+/* Row text */
+.row-text{
+  position:absolute; left:46px; top:10px;
+  font-weight:600; font-size:14px; line-height:19px; color:#1F2937;
+}
+
+/* Chevron */
+.chev{position:absolute; right:0; top:8px; width:24px; height:24px;}
+.chev-v{
+  position:absolute; left:11px; top:8px; width:4px; height:8px;
+  border-right:2px solid var(--chev); border-top:2px solid var(--chev);
+  transform:rotate(45deg);
+}
+
+/* Logout specific row text weight */
+.card-logout .row-text{font-weight:600;}
+
+/* Accessibility hover feedback (non-Figma) */
+.row:hover{filter:brightness(0.98);}

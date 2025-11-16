@@ -1,0 +1,210 @@
+:root {
+  --font-base: "Helvetica Neue", Arial, sans-serif;
+
+  /* Color guesses from visual: */
+  --bg-canvas: #0f1420;         /* deep bluish navy */
+  --bg-card: #ffffff;
+  --text-on-dark: #ffffff;
+  --text-muted: #c8ceda;       /* subtitle muted */
+  --label: #8b93a7;            /* small labels */
+  --input-bg: #f2f5f9;
+  --input-border: #e5e9f0;
+  --primary: #ff7a2f;          /* orange button */
+  --primary-text: #ffffff;
+  --link: #ff7a2f;             /* matches Figma orange accent */
+  --body-text: #3b3f4a;
+
+  --social-twitter: #1da1f2;
+  --social-apple: #11131a;
+  --social-facebook-bg: #3b5998; /* actual bg comes as image, fallback color */
+}
+
+/* Screen container */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg-canvas);
+}
+.screen {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0f1420 0%, #121826 100%);
+  font-family: var(--font-base);
+  color: var(--body-text);
+}
+
+/* Decorative BG elements */
+.bg-asset { position: absolute; }
+.ellipse-1005 {
+  position: absolute;
+  left: 0px; top: 0px;
+  width: 177px; height: 177px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255,255,255,0.06), rgba(255,255,255,0) 70%);
+  filter: blur(0.2px);
+}
+.vector-142 {
+  position: absolute;
+  left: 351px; /* -2120 to -2471 offset => 351 within group width */
+  top: 5px;
+  width: 201px; height: 444px;
+  background:
+    radial-gradient(closest-side, rgba(255,255,255,0.08), rgba(255,255,255,0) 70%);
+  mask-image: radial-gradient(circle at 0% 0%, rgba(0,0,0,1), rgba(0,0,0,0) 70%);
+  opacity: 0.6;
+}
+
+/* Top headings */
+.title {
+  position: absolute;
+  font-weight: 700;
+  font-size: 28px; /* fits 36px height */
+  line-height: 36px;
+  text-align: center;
+  color: var(--text-on-dark);
+}
+.subtitle {
+  position: absolute;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* White card region */
+.white-card {
+  position: absolute;
+  left: 0px; top: 233px; /* 1268-1035=233 based on YAML frame coords; screen origin already adjusted => top of card under headings */
+  width: 375px; height: 579px;
+  background: var(--bg-card);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 -1px 0 rgba(0,0,0,0.04) inset;
+}
+
+/* Groups common */
+.group { position: absolute; }
+
+/* Labels and fields */
+.label {
+  position: absolute;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.3px;
+  color: var(--label);
+  text-transform: uppercase;
+}
+.field {
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.field-bg {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+}
+.field-text {
+  position: absolute;
+  font-size: 14px;
+  line-height: 17px;
+  color: #6b7280;
+}
+.icon-eye {
+  position: absolute;
+  right: 16px;
+  top: 22px;
+  width: 19px; height: 14px;
+}
+
+/* Remember + Forgot */
+.remember { position: absolute; display: flex; align-items: center; gap: 8px; }
+.checkbox {
+  width: 20px; height: 20px;
+}
+.remember-text {
+  font-size: 12px;
+  line-height: 16px;
+  color: #6b7280;
+}
+.forgot {
+  position: absolute;
+  font-size: 13px;
+  line-height: 17px;
+  color: var(--link);
+}
+
+/* Primary CTA */
+.primary-btn {
+  position: absolute;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--primary-text);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(255, 122, 47, 0.3);
+}
+.primary-btn:active { transform: translateY(1px); }
+
+/* Prompt + Sign Up */
+.prompt {
+  position: absolute;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6b7280;
+  text-align: left;
+}
+.signup {
+  position: absolute;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 17px;
+  color: var(--link);
+}
+
+/* Social section */
+.or {
+  position: absolute;
+  font-size: 14px;
+  line-height: 19px;
+  color: #6b7280;
+  text-align: center;
+}
+.social-item { position: absolute; }
+.social-bg {
+  position: absolute;
+  left: 0; top: 0;
+  width: 62px; height: 62px;
+}
+.social-icon {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px; height: 22px;
+}
+
+/* Fallback CSS-built circle backgrounds for twitter/apple */
+.twitter-bg, .apple-bg {
+  position: absolute;
+  left: 0; top: 0;
+  width: 62px; height: 62px;
+  border-radius: 50%;
+}
+.twitter-bg { background: var(--social-twitter); }
+.apple-bg { background: var(--social-apple); }
+
+@media (min-width: 376px) {
+  /* Center on wider canvases while keeping dimensions fixed */
+  body { display: flex; align-items: center; justify-content: center; }
+}

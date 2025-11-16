@@ -1,0 +1,271 @@
+:root{
+  /* Colors inferred from screenshot and YAML naming */
+  --color-bg: #ffffff;              /* color_ffffff */
+  --text-primary: #1f2a37;          /* deep gray for main text (approx from image) */
+  --text-secondary: #8a97a7;        /* muted gray for subtitle/fields */
+  --text-label: #95a1b1;            /* uppercase labels */
+  --accent-edit: #ff8a65;           /* EDIT orange/tangerine */
+  --icon-circle: #f2f6fb;           /* pale bluish background of icon circles */
+  --card-bg: #f3f7fb;               /* soft blue-gray card background */
+  --card-inner: #ffffff;            /* not used; keeping for future */
+  --shadow-color: rgba(18, 45, 76, 0.08);
+  --profile-accent: #ffc9ab;        /* peach circle avatar */
+}
+
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--color-bg);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color:var(--text-primary);
+  height:100%;
+}
+
+#app{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  min-height:100vh;
+}
+
+/* Root frame: absolute canvas 375x812 */
+.frame.personal-profiles{
+  position:relative;
+  width:375px;
+  height:812px;
+  background:var(--color-bg);
+  overflow:hidden;
+  border-radius:0;
+}
+
+.frame.personal-profiles .frame-bg{
+  display:none; /* keep hidden; we build actual UI */
+}
+
+/* Top group (226:357) */
+#top-226-357{
+  position:absolute;
+  left:28px;   /* from x:-4219 relative to frame x:-4243 => delta 24; but visual shows ~28 for padding */
+  top:0px;     /* The group y 4101 vs frame 4051 -> 50; plus safe notch. We align exact absolute from YAML deltas: 4101-4051=50 */
+  width:327px;
+  height:45px;
+  transform:translate(0px, 50px);
+}
+
+/* Back button (45x45) */
+.back-button{
+  position:absolute;
+  left:0;
+  top:0;
+  width:45px;
+  height:45px;
+  border:none;
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+}
+.back-ellipse{
+  position:absolute;
+  left:0; top:0; width:45px; height:45px;
+}
+.back-icon{
+  position:absolute;
+  left:20px; top:17px; /* places 5x10 chevron within ellipse: (x:-4199 vs -4219 => 20, y:4118 vs 4101 => 17) */
+  width:5px; height:10px;
+  border-right:2px solid #8593a3;
+  border-bottom:2px solid transparent;
+  border-top:2px solid transparent;
+  transform:rotate(135deg); /* create a left chevron illusion */
+  border-left:2px solid #8593a3;
+  border-radius:1px;
+}
+
+/* Title */
+#title-226-362{
+  position:absolute;
+  left:61px; /* -4158 - (-4219) = 61 */
+  top:11.5px; /* 4112.5-4101 */
+  margin:0;
+  font-weight:700;
+  font-size:18px; /* typo_128 approx */
+  line-height:22px;
+  letter-spacing:0.2px;
+  color:#2b3645;
+}
+
+/* EDIT text button (226:363) */
+.edit-button{
+  position:absolute;
+  left:292px; /* -3927 - (-4219) = 292 */
+  top:11px;   /* 4112 - 4101 */
+  background:transparent;
+  border:none;
+  font-weight:700;
+  font-size:12px; /* typo_131 approx */
+  line-height:24px;
+  color:var(--accent-edit);
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+
+/* Profile section (226:348) positioned from frame deltas */
+#profile-226-348{
+  position:absolute;
+  left:24px;  /* -4219 - (-4243) */
+  top:119px;  /* 4170 - 4051 = 119 */
+  width:272px;
+  height:100px;
+}
+
+/* Avatar 100x100 */
+.profile-image-wrap{
+  position:absolute;
+  left:0; top:0;
+  width:100px; height:100px;
+}
+.profile-avatar{
+  position:absolute;
+  left:0; top:0; width:100px; height:100px;
+  background:var(--profile-accent);
+  border-radius:50%;
+  box-shadow: 0 2px 6px var(--shadow-color) inset;
+}
+
+/* Name and tagline */
+.profile-name{
+  position:absolute;
+  left:132px; /* -4087 - (-4219) = 132 */
+  top:22px;   /* 4192 - 4170 */
+  width:140px; height:24px;
+  font-weight:700;
+  font-size:16px; /* typo_129 approx */
+  line-height:24px;
+  color:#2b3645;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.profile-tagline{
+  position:absolute;
+  left:132px; /* same baseline */
+  top:54px;   /* 4224 - 4170 */
+  width:160px; height:24px;
+  font-weight:500;
+  font-size:12px; /* typo_130 approx */
+  line-height:24px;
+  color:var(--text-secondary);
+}
+
+/* Info card (226:319) */
+#card-226-319{
+  position:absolute;
+  left:24px;      /* -4219 - (-4243) */
+  top:251px;      /* 4302 - 4051 */
+  width:327px;
+  height:192px;
+  background:var(--card-bg);
+  border-radius:12px;
+  box-shadow: 0 4px 16px var(--shadow-color);
+  padding:0;
+}
+
+/* Individual rows share 40px height, align to YAML coords */
+.info-row{
+  position:absolute;
+  left:0;
+  height:40px;
+  width:100%;
+}
+
+#row-name-226-339{ top:20px; left:0; width:148px; /* visual group width; container still full width */ }
+#row-email-226-329{ top:76px; left:0; width:169px; }
+#row-phone-226-321{ top:132px; left:0; width:168px; }
+
+/* Icon circles (40x40) positioned at x offset 0, y = group top relative inside card */
+.icon-circle{
+  position:absolute;
+  left:0;
+  top:0;
+  width:40px; height:40px;
+  border-radius:50%;
+  background:var(--icon-circle);
+}
+
+/* Name icon stylization via CSS (small user glyph) */
+.icon-circle.name::before{
+  content:"";
+  position:absolute;
+  left:14px; top:9px;
+  width:12px; height:12px;
+  border-radius:50%;
+  background:#93a3b5;
+}
+.icon-circle.name::after{
+  content:"";
+  position:absolute;
+  left:9px; bottom:7px;
+  width:22px; height:6px;
+  border-radius:6px/3px;
+  background:#93a3b5;
+}
+
+/* Email boolean paths */
+.icon-circle.email .email-path-226-336{
+  position:absolute; left:11px; top:13px; width:17.5px; height:14px;
+}
+.icon-circle.email .email-path-226-338{
+  position:absolute; left:11px; top:13px; width:17.5px; height:14px;
+  opacity:0.85;
+}
+
+/* Phone ellipse and icon */
+.icon-circle.phone .phone-ellipse-226-326{
+  position:absolute; left:0; top:0; width:40px; height:40px; opacity:0; /* underlying circle already via CSS */
+}
+.icon-circle.phone .phone-icon-226-328{
+  position:absolute; left:12.6px; top:12.66px; width:14.38px; height:14.34px;
+}
+
+/* Label + Field texts (Group stacks) */
+.label-field{
+  position:absolute;
+  left:46px; /* 40 + 6px gap */
+  top:2px;
+  height:36px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+
+.label{
+  font-weight:700;
+  font-size:12px; /* typo_119 uppercase small */
+  line-height:17px;
+  letter-spacing:1px;
+  color:var(--text-label);
+  text-transform:uppercase;
+}
+.field{
+  font-weight:600;
+  font-size:12px; /* typo_127 small body */
+  line-height:17px;
+  color:var(--text-secondary);
+  margin-top:1px;
+}
+
+/* Accessibility focus */
+button:focus-visible{
+  outline:2px solid #4c9ffe;
+  outline-offset:2px;
+}
+
+/* Safe-area padding support for devices with notches (visual only; absolute top transforms above covered) */
+@supports(padding:max(0px)){
+  .frame.personal-profiles{
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

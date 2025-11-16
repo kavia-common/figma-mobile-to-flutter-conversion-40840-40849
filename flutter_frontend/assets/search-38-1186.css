@@ -1,0 +1,109 @@
+:root {
+  --bg-canvas: #ffffff;
+  --text-primary: #151522; /* inferred dark graphite for titles */
+  --text-secondary: #6e6e7a; /* inferred muted gray for subtext */
+  --text-accent: #ff4d00; /* rating star/orange accent (approx from screenshot) */
+  --chip-bg: #f2f3f7; /* light gray tag/search background */
+  --chip-text: #8b8e99;
+  --divider: #e6e7eb;
+  --card-bg: #f0f2f6;
+  --soft-ellipse: #eef2f7;
+  --search-border: rgba(0,0,0,0.04);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-soft: 0 2px 8px rgba(16, 24, 40, 0.06);
+  --font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 375px; /* fixed to match Figma artboard */
+  height: 812px;
+  background: var(--bg-canvas);
+  font-family: var(--font-family);
+}
+
+.screen {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  background: var(--bg-canvas);
+  overflow: hidden;
+}
+
+/* Generic helpers */
+.group { position: absolute; }
+.text { position: absolute; color: var(--text-primary); }
+.rect { position: absolute; background: var(--card-bg); border-radius: var(--radius-md); }
+.icon { position: absolute; background-repeat: no-repeat; background-size: contain; background-position: center; }
+.ellipse { position: absolute; }
+.ellipse.soft { background: var(--soft-ellipse); }
+.divider {
+  position: absolute; height: 1px; background: var(--divider);
+}
+
+/* Title */
+.title {
+  font-weight: 600; font-size: 18px; line-height: 22px; letter-spacing: 0;
+}
+
+/* Cart count */
+.cart-count { font-weight: 700; font-size: 14px; line-height: 19px; color: #fff; }
+
+/* Back arrow vector (approx using CSS) */
+.back-arrow {
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
+  transform: rotate(135deg);
+  width: 5px; height: 10px;
+}
+
+/* Search field */
+.search-bg {
+  background: var(--chip-bg);
+  border: 1px solid var(--search-border);
+  border-radius: 16px;
+}
+.search-placeholder {
+  font-size: 14px; line-height: 17px; color: var(--chip-text); font-weight: 500;
+}
+.chip-x::before, .chip-x::after {
+  content: ""; position: absolute; left: 0; top: 0; right: 0; bottom: 0; margin: auto;
+  width: 12px; height: 2px; background: #6f7380; display: block;
+  transform: rotate(45deg);
+}
+.chip-x::after { transform: rotate(-45deg); }
+
+/* Keywords tags */
+.tag { position: absolute; }
+.tag-bg {
+  position: absolute; background: var(--chip-bg); border-radius: 23px;
+  border: 1px solid var(--divider);
+}
+.tag .tag-text {
+  position: absolute; left: 16px; top: 12px;
+  font-size: 14px; line-height: 19px; color: var(--text-secondary); font-weight: 600;
+}
+
+/* Suggested Restaurants */
+.section-title { font-size: 16px; line-height: 24px; font-weight: 700; color: var(--text-primary); }
+.rest-row { position: absolute; }
+.thumb-mask { position: absolute; overflow: hidden; border-radius: 12px; }
+.thumb-mask .thumb-bg { position: absolute; inset: 0; background: #e9edf3; border-radius: 12px; }
+.thumb-mask .thumb-img { position: absolute; left: 0; top: -3px; width: 100%; height: calc(100% + 6px); object-fit: cover; }
+.rest-name { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+.rating { font-size: 14px; font-weight: 700; color: var(--text-accent); }
+.star { position: absolute; width: 15px; height: 15px; background: url(/assets/figmaimages/figma_image_38_1212.svg) center/contain no-repeat; }
+
+/* Popular Fast food */
+.pop-card { position: absolute; }
+.pop-rect { position: absolute; background: #e9edf3; border-radius: 16px; }
+.pop-img { position: absolute; background: #cbd3de; border-radius: 12px; }
+.pop-title { font-size: 14px; line-height: 18px; font-weight: 700; color: var(--text-primary); }
+.pop-sub { font-size: 13px; line-height: 16px; font-weight: 500; color: var(--text-secondary); }
+
+/* Canvas preview hidden */
+.canvas-preview { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
